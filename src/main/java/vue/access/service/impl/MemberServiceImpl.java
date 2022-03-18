@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
         log.info("signMember Pw = {}", signMember.getMemPw());
         String encodedPw = passwordEncoder.encode(signMember.getMemPw());
         log.info("encodedPw = {}", encodedPw);
-        Member member = new Member(null, signMember.getMemId(), encodedPw, signMember.getMemEmail(), signMember.getMemNm(), signMember.getAge());
+        Member member = new Member(null, signMember.getMemId(), encodedPw, signMember.getMemEmail(), signMember.getMemNm(), 0);
         memberRepository.save(member);
     }
 }

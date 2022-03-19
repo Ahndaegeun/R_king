@@ -5,10 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import vue.access.dto.LoginMember;
 import vue.access.dto.SignMember;
 import vue.access.service.inter.MemberService;
@@ -35,5 +32,12 @@ public class LoginController {
         System.out.println(signMember);
         memberService.saveMember(signMember);
         return "ok";
+    }
+
+    @GetMapping("/admin")
+    public String adminPage(String token) {
+        log.info("admin page");
+        log.info("token = {}", token);
+        return "";
     }
 }

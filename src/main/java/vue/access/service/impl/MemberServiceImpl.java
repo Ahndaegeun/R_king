@@ -23,8 +23,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean login(LoginMember loginMember) {
-        String encodedPw = passwordEncoder.encode(loginMember.getUserPw());
-        return memberRepository.findByMemIdAndMemPw(loginMember.getUserId(), encodedPw).isPresent();
+        return false;
     }
 
     @Override

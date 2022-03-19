@@ -5,6 +5,7 @@
     <li><router-link to="/">home</router-link></li>
     <li><router-link to="/login">login</router-link></li>
     <li><router-link to="/sign">sign</router-link></li>
+    <li><router-link to="/admin">admin</router-link></li>
   </ul>
 </template>
 

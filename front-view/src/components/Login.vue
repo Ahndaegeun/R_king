@@ -17,6 +17,7 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
 
 export default {
   name: 'HelloWorld',
@@ -27,6 +28,9 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({
+      setUserToken: "userInfo/setUserToken"
+    }),
     onLogin() {
       try {
         const form = new FormData()
@@ -35,7 +39,8 @@ export default {
 
         axios.post('/member/login', form)
         .then(res => {
-          console.log(res)
+          const token = res.data.token
+          this.setUserToken(token)
         })
 
       } catch (err) {

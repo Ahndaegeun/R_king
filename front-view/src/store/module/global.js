@@ -1,7 +1,7 @@
 const global = {
     namespaced: true,
     state: {
-        isLogin: false
+
     },
     mutations: {
 

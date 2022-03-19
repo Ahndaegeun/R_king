@@ -1,4 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
+import store from '../store/index'
 
 import Login from "@/components/Login"
 import Home from '@/components/Home'
@@ -25,8 +26,14 @@ const routes = [
         path: '/admin',
         name: 'Admin',
         component: Admin,
-        meta: {
-            requiresAuth: true
+        beforeEnter: (to, from, next) => {
+            store.dispatch("userInfo/tokenValidate", localStorage.getItem(""))
+                .then(() => {
+                    next()
+                })
+                .catch(() => {
+                    next("/")
+                })
         }
     },
     {

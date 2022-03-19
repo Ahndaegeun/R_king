@@ -6,9 +6,11 @@ import net.bytebuddy.implementation.bind.annotation.Empty;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @AllArgsConstructor
+@ToString
 public class LoginMember implements UserDetails {
 
     private String userId;
@@ -17,7 +19,7 @@ public class LoginMember implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return new ArrayList<>();
     }
 
     @Override
@@ -28,6 +30,10 @@ public class LoginMember implements UserDetails {
     @Override
     public String getUsername() {
         return userName;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     @Override

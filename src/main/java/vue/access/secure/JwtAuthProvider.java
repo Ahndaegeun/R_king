@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.WebUtils;
 
 import javax.servlet.http.Cookie;
@@ -17,13 +18,14 @@ import java.util.List;
 
 @Slf4j
 @RequiredArgsConstructor
+@Component
 public class JwtAuthProvider {
 
     private static final String SECRET_KEY = "8cc495647f614d617c9467f738cfd629dffef173e859aa6a2aa6b3c9286bc90f2cced12e4eba0a835478b88ad68c13765164fbfea0dbe47820d9b052defaca6b";
     private static final long EXPIRE_JWT = 1000L * 60 * 60;
     private final UserDetailsService userDetailsService;
 
-    public static String createToken(String userPk, List<String> roles) {
+    public String createToken(String userPk, List<String> roles) {
         // Payload 에 저장되는 정보
         Claims claims = Jwts.claims().setSubject(userPk);
         claims.put("roles", roles); // key, value로 저장

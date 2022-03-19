@@ -2,6 +2,7 @@ package vue.access.service.impl;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,11 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean login(LoginMember loginMember) {
-        return false;
+        Member member = memberRepository.findByMemId(loginMember.getUserId()).orElse(null);
+        if(!(member != null & passwordEncoder.matches(loginMember.getPassword(), member.getMemPw()))) {
+            throw new IllegalArgumentException("아이디 혹은 비밀번호를 확인해 주세요");
+        }
+        return true;
     }
 
     @Override

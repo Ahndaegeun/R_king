@@ -30,6 +30,7 @@ export default {
   methods: {
     ...mapMutations({
       setUserToken: 'userInfo/setUserToken',
+      setIsLogin: 'userInfo/setIsLogin'
     }),
     onLogin() {
         const form = new FormData()
@@ -40,6 +41,7 @@ export default {
         .then(res => {
           const token = res.data.token
           this.setUserToken(token)
+          this.setIsLogin(true)
         })
     }
   }

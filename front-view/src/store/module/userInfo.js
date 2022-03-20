@@ -3,11 +3,19 @@ import axios from 'axios'
 const userInfo = {
     namespaced: true,
     state: {
-        userToken: ''
+        userToken: '',
+        isLogin: false
     },
     mutations: {
         setUserToken(state, token) {
             state.userToken = token
+        },
+        setIsLogin(state, flag) {
+            state.isLogin = flag
+        },
+        logout(state) {
+            state.userToken = ''
+            state.isLogin = false
         }
     },
     actions: {

@@ -36,7 +36,7 @@ export default {
       axios.post('/member/sign', form)
         .then(res => {
           console.log(res)
-          this.$router.push({path:"/"})
+          this.$router.push({path:"/login"})
         })
     }
   }

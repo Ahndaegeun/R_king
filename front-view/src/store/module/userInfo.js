@@ -3,14 +3,12 @@ import axios from 'axios'
 const userInfo = {
     namespaced: true,
     state: {
-        isLogin: false,
-        isAutoLogin: false,
         userToken: ''
     },
     mutations: {
-        setIsLogin(state, flag) { state.isLogin = flag },
-        setIsAutoLogin(state, flag) { state.isAutoLogin = flag },
-        setUserToken(state, token) { state.userToken = token }
+        setUserToken(state, token) {
+            state.userToken = token
+        }
     },
     actions: {
         async tokenValidate(context) {
@@ -20,7 +18,7 @@ const userInfo = {
 
             let result = false
             await axios.post('/user/token', form)
-                .then(res => {
+                .then((res) => {
                     context.commit("setUserToken", res.data.token)
                     result = true
                 })

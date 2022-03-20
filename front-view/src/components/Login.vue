@@ -20,7 +20,7 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Login',
   data() {
     return {
       userId: '',
@@ -29,10 +29,9 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setUserToken: "userInfo/setUserToken"
+      setUserToken: 'userInfo/setUserToken',
     }),
     onLogin() {
-      try {
         const form = new FormData()
         form.append("userId", this.userId)
         form.append("userPw", this.userPw)
@@ -42,10 +41,6 @@ export default {
           const token = res.data.token
           this.setUserToken(token)
         })
-
-      } catch (err) {
-        throw new Error(err)
-      }
     }
   }
 }
